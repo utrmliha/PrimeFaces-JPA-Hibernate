@@ -11,7 +11,7 @@
 <img src="https://i.postimg.cc/Y9mdrX3X/3.png">
 
 # Guia da Uso
-1-O projeto deve ser descompactado e importado para a Ide Eclipse<br />
+1-O projeto deve ser importado para a Ide Eclipse<br />
 2-Foram usados as versões do jdk-11.0.9<br />
 3-Projeto feito em maven usando: hibernate core e hibernate entitymanager 5.4.0.Final,    gson 2.8.6,    jsf-api e jsf-impl 2.2.20,    postgresql 42.2.18 e    primefaces 6.0<br />
 4-Para uso do sistema, disponibilizo as <a href="https://www.mediafire.com/file/pyu5dcmkjvj3rrt/TablesPostgreSQl.rar/file">tabelas modelo em PostgreSQL</a> com alguns dados nos arquivos de backup (Mesmo que o hibernate crie as tabelas no banco, use os inserts dos arquivos para ter alguns dados para teste)<br />
