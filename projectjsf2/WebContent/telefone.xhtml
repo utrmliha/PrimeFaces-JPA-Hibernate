@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:breadCrumb>
+			<p:menuitem />
+			<p:menuitem value="Página JSF" action="index.xhtml"/>
+			<p:menuitem value="Página PrimeFaces" action="primefaces.xhtml"/>
+		</p:breadCrumb>
+	</h:form>
+
+	<center>
+	<h:form id="formCadastro">
+		<p:messages showDetail="true" autoUpdate="true"/>
+		
+		<h:panelGrid columns="2">
+			<p:outputLabel value="ID: "/>
+			<p:inputText value="#{telefoneBean.user.id}"/>
+			
+			<p:outputLabel value="Nome: "/>
+			<p:inputText value="#{telefoneBean.user.nome}"/>
+			
+			<p:outputLabel value="Tipo: "/>
+			<p:inputText value="#{telefoneBean.telefone.tipo}"/>
+			
+			<p:outputLabel value="Numero: "/>
+			<p:inputMask mask="(99) 9 9999-9999" value="#{telefoneBean.telefone.numero}"/>
+		</h:panelGrid>
+
+		<p:commandButton value="Salvar" action="#{telefoneBean.Salvar}" ajax="false"/>
+	</h:form></center>
+	<br /><br />
+	<h:form id="formTelefones">
+		<p:dataTable value="#{telefoneBean.user.telefoneuser}" var="fone">
+			<f:facet name="header">Telefones</f:facet>
+			<p:column headerText="ID" width="30">
+				<h:outputText value="#{fone.id}"/>
+			</p:column>
+			<p:column headerText="Tipo">
+				<h:outputText value="#{fone.tipo}"/>
+			</p:column>
+			<p:column headerText="Número">
+				<h:outputText value="#{fone.numero}"/>
+			</p:column>
+			<p:column headerText="Excluir" width="70">
+				<h:commandLink action="#{telefoneBean.Excluir}">
+					<center><h:graphicImage url="resources/img/x.png"/></center>
+					<f:setPropertyActionListener value="#{fone}" target="#{telefoneBean.telefone}"/>
+				</h:commandLink>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	
+</h:body>
+</html>

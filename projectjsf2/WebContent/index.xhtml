@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:H="http://java.sun.com/jsf/html"
+	  xmlns:F="http://java.sun.com/jsf/core">
+<H:head>
+
+</H:head>
+<H:body>
+
+	<H:link value="Página JSF" outcome="index.xhtml"/><br />
+	<H:link value="Página PrimeFaces" outcome="primefaces.xhtml"/>
+
+	<H:form id="formCadastro">
+		<H:messages showDetail="true" />
+		<H:panelGrid columns="2">
+			<H:outputLabel value="ID: "/>
+			<H:inputText readonly="true" value="#{usuarioBean.usuarioPessoa.id}"/>
+			
+			<H:outputLabel value="Nome: "/>
+			<H:inputText   value="#{usuarioBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome"/>
+			
+			<H:outputLabel value="Sobrenome: "/>
+			<H:inputText   value="#{usuarioBean.usuarioPessoa.sobrenome}"/>
+			
+			<H:outputLabel value="Idade: "/>
+			<H:inputText   value="#{usuarioBean.usuarioPessoa.idade}"/>
+			
+			<H:outputLabel value="Salário: "/>
+			<H:inputText   value="#{usuarioBean.usuarioPessoa.salario}"/>
+			
+			<H:outputLabel value="Sexo: "/>
+			<H:selectOneMenu value="#{usuarioBean.usuarioPessoa.sexo}">
+				<F:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+				<F:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+			</H:selectOneMenu>
+			
+			<H:outputLabel value="Login: "/>
+			<H:inputText   value="#{usuarioBean.usuarioPessoa.login}"/>
+			
+			<H:outputLabel value="Senha: "/>
+			<H:inputSecret value="#{usuarioBean.usuarioPessoa.senha}"/>
+			
+			<H:outputText />
+			<H:panelGroup>
+				<H:commandButton value="Salvar" action="#{usuarioBean.Salvar}"/>
+				<H:commandButton value="Excluir" action="#{usuarioBean.Excluir}" immediate="true"/>
+				<H:commandButton value="Limpar" action="#{usuarioBean.Novo}"/>
+			</H:panelGroup>
+			
+		</H:panelGrid>
+		
+	</H:form>
+	
+	<H:form id="formLista">
+			<H:dataTable value="#{usuarioBean.listaUsuarios}" var="user" cellpadding="5">
+				<F:facet name="header">Lista de Usuarios</F:facet>
+				<H:column>
+					<F:facet name="header">ID</F:facet>
+					<H:outputText value="#{user.id}"/>
+					</H:column>
+				<H:column>
+					<F:facet name="header">Nome</F:facet>
+					<H:outputText value="#{user.nome}"/>
+					</H:column>
+				<H:column>
+					<F:facet name="header">Sobrenome</F:facet>
+					<H:outputText value="#{user.sobrenome}"/>
+					</H:column>
+				<H:column>
+					<F:facet name="header">Idade</F:facet>
+					<H:outputText value="#{user.idade}"/>
+					</H:column>
+				<H:column>
+					<F:facet name="header">Login</F:facet>
+					<H:outputText value="#{user.login}"/>
+					</H:column>
+				<H:column>
+					<F:facet name="header">Editar</F:facet>
+					<H:commandLink id="botaoeditar">
+						<H:graphicImage url="resources/img/caneta.png" width="25" height="25"/>
+						<F:setPropertyActionListener value="#{user}" target="#{usuarioBean.usuarioPessoa}"/>
+						<F:ajax execute="botaoeditar" render=":formCadastro"/>
+					</H:commandLink>
+					</H:column>
+				<H:column>
+					<F:facet name="header">Excluir</F:facet>
+					<H:commandLink action="#{usuarioBean.Excluir}">
+						<H:graphicImage url="resources/img/x.png" width="25" height="25"/>
+						<F:setPropertyActionListener value="#{user}" target="#{usuarioBean.usuarioPessoa}"/>
+					</H:commandLink>
+					</H:column>
+				<H:column>
+					<F:facet name="header">Telefone</F:facet>
+					<H:commandLink action="telefone.xhtml">
+						<H:graphicImage url="resources/img/telefone.png" width="25" height="25"/>
+						<F:param name="codUser" value="#{user.id}"/>
+					</H:commandLink>
+					</H:column>
+					
+			</H:dataTable>
+	</H:form>
+	
+</H:body>
+</html>
